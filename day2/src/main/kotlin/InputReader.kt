@@ -7,8 +7,8 @@ class InputReader {
         val rounds = mutableListOf<Round>()
 
         File(fileName).forEachLine {
-            val opponentChoice: HandShape = HandShape.readFromLetter(it[0])
-            val myChoice: HandShape = HandShape.readFromLetter(it[2])
+            val opponentChoice: HandShape = HandShape.readFromLetterForOpponent(it[0])
+            val myChoice: HandShape = HandShape.readChoiceForMe(it[2], opponentChoice)
 
             rounds.add(Round(opponentChoice, myChoice))
         }
