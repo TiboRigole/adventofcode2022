@@ -3,12 +3,14 @@ import {Item} from "./Item";
 export class RuckSack {
     private readonly leftHalf: Item[];
     private readonly rightHalf: Item[];
+    readonly merged: Item[];
     
     constructor(fullString: string) {
 
         this.leftHalf = [];
         this.rightHalf = [];
-        
+        this.merged = [];
+
         const middle: number = Math.floor(fullString.length / 2);
         const leftHalfString : string = fullString.substr(0, middle);
         const rightHalfString : string = fullString.substr(middle);
@@ -16,11 +18,13 @@ export class RuckSack {
         for (let i = 0; i < leftHalfString.length; i++) {
             const char = leftHalfString.charAt(i);
             this.leftHalf.push(new Item(char))
+            this.merged.push(new Item(char))
         }
 
         for (let i = 0; i < rightHalfString.length; i++) {
             const char = rightHalfString.charAt(i);
             this.rightHalf.push(new Item(char))
+            this.merged.push(new Item(char))
         }
         if(this.leftHalf.length != this.rightHalf.length) {
             console.log(`value was: ${fullString}`)
@@ -38,7 +42,6 @@ export class RuckSack {
                 return foundValue
             }
         }
-        
         return undefined;
     }
 }
