@@ -1,3 +1,5 @@
+import { throws } from "assert";
+
 export class Elve {
     private readonly lower : number
     private readonly upper: number
@@ -15,5 +17,11 @@ export class Elve {
             return true;
         }
         return false;
+    }
+
+    public hasSomeOverlap(otherElve: Elve) : boolean {
+        return (this.hasFullOverlap(otherElve)) ||
+            (this.lower <= otherElve.lower && otherElve.lower <= this.upper) ||
+            (this.lower <= otherElve.upper && otherElve.upper <= this.upper)
     }
 }

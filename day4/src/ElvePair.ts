@@ -14,4 +14,8 @@ export class ElvePair {
         return this.firstElve.hasFullOverlap(this.secondElve)
     }
 
+    public hasSomeOverlap() : boolean {
+        return this.firstElve.hasSomeOverlap(this.secondElve);
+    }
+
 }
