@@ -12,12 +12,20 @@ export class Stack<T> implements IStack<T> {
       this.storage.push(item);
     }
   
-    pop(): T | undefined {
-      return this.storage.pop();
+    pop(): T {
+      const item = this.storage.pop();
+      if(item === undefined) {
+        throw Error('the stack is empty, can not pop!');
+      }
+      return item
     }
   
-    peek(): T | undefined {
-      return this.storage[this.size() - 1];
+    peek(): T {
+      const item = this.storage[this.size() - 1];
+      if(item === undefined) {
+        throw Error('the stack is empty, can not pop!');
+      }
+      return item;
     }
   
     size(): number {

@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import { Move } from './Move';
 import { Stack } from './stack/Stack';
 
-export function readInput(textFile: string) : void {
+export function readInput(textFile: string) : [Move[], Stack<string>[]] {
     const allContents = fs.readFileSync(textFile, 'utf-8');
     const lines: string[] = allContents.split(/\r?\n/)
 
@@ -22,7 +22,7 @@ export function readInput(textFile: string) : void {
 
     const stacks = fillInStacks(amountOfStacks, matrix);
 
-    console.log('matrix parsed!');
+    return [moves, stacks];
 }
 
 export function determineWhitelineIndex(lines: string[]) : number {
