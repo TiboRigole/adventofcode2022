@@ -21,8 +21,6 @@ console.log(string)
 function executeMoveOnStacks(move: Move, stacks: Stack<string>[]) {
     const { fromStack, toStack, amount } = move
     
-    for(let i = 0 ; i < amount ; i++) {
-        const item : string = stacks[fromStack].pop()
-        stacks[toStack].push(item)
-    }
+    const items = stacks[fromStack].popAll(amount);
+    stacks[toStack].pushAll(items)
 }

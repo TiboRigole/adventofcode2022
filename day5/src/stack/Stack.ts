@@ -11,6 +11,13 @@ export class Stack<T> implements IStack<T> {
       }
       this.storage.push(item);
     }
+
+    pushAll(items: T[]) : void {
+      const reversedArray = items.reverse() 
+      for(let i = 0 ; i < reversedArray.length ; i++) {
+        this.push(reversedArray[i])
+      }
+    }
   
     pop(): T {
       const item = this.storage.pop();
@@ -19,6 +26,19 @@ export class Stack<T> implements IStack<T> {
       }
       return item
     }
+
+    popAll(amount: number): T[] {
+
+      const items : T[] = [];
+
+      for(let i = 0 ; i < amount ; i++) {
+        items.push(this.pop())
+      }
+
+      return items;
+    }
+
+
   
     peek(): T {
       const item = this.storage[this.size() - 1];
