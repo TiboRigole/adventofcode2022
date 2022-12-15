@@ -1,4 +1,4 @@
-import { calculateStartSignal } from "./StartSignalCalculator";
+import { calculateStartOfMessage, calculateStartSignal } from "./StartSignalCalculator";
 
 describe('test different inputs', () => {
     it('should return 5 for bvwbjplbgvbhsrlpgdmjqwftvncz', async () => {
@@ -38,6 +38,25 @@ describe('test different inputs', () => {
         const amountDistinct = unique.length;
 
         expect(amountDistinct).toBe(3);
+    })
+
+    it('check borders of substring', () => {
+        const example = 'aabbcc';
+        const subString = example.substring(0, 4);
+
+        expect(subString).toBe('aabb')
+    })
+
+    it('should return 19 for startOfMessage', () => {
+        const input = 'mjqjpqmgbljsphdztnvjfqwrcgsmlb'
+        const output = calculateStartOfMessage(input);
+        expect(output).toBe(19)
+    })
+
+    it('should return 19 for startOfMessage', () => {
+        const input = 'mjqjpqmgbljsphdztnvjfqwrcgsmlb'
+        const output = calculateStartOfMessage(input);
+        expect(output).toBe(19)
     })
 
 })

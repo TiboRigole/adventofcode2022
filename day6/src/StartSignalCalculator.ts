@@ -1,25 +1,33 @@
 import { stringify } from "querystring";
 
 export function calculateStartSignal(input: string) : number {
-    for(let i = 3; i < input.length ; i++) {
-        const firstChar: string = input.charAt(i-3);
-        const secondChar: string = input.charAt(i-2);
-        const thirdChar: string = input.charAt(i-1);
-        const fourthChar: string = input.charAt(i);
+    return calculateFirstDistinct(input, 4)
+}
 
-        if(isDistinct(firstChar, secondChar, thirdChar, fourthChar)){
+export function calculateStartOfMessage(input: string) : number {
+    return calculateFirstDistinct(input, 14)
+}
+
+function calculateFirstDistinct(inputString: string, partLength: number) {
+    for(let i = partLength -1; i < inputString.length ; i++) {
+        const partToCheck = inputString.substring(i - partLength + 1, i + 1)
+
+        if(isDistinct(partToCheck)){
+
             return i + 1;
         }
     }
-
     return -1;
 }
 
-function isDistinct(a: string, b: string, c: string, d: string) : boolean {
-    const list = [a, b, c, d]
+function isDistinct(inputString: string) : boolean {
+    const list : string[] = [];
+
+    for(let i = 0 ; i < inputString.length ; i++) {
+        list.push(inputString.charAt(i))
+    }
+
     let unique = [...new Set(list)];
 
-    const amountDistinct = unique.length;
-
-    return amountDistinct === 4
+    return unique.length == inputString.length
 }
