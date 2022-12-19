@@ -6,4 +6,12 @@ export class File {
         this.name = name;
         this.size = size;
     }
+
+    getName() : string {
+        return this.name;
+    }
+
+    getSize(): number {
+        return this.size;
+    }
 }

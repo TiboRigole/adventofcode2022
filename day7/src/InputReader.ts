@@ -1,5 +1,7 @@
 import * as fs from 'fs';
-import { ChangeDirectoryCommand, Command, Direction, ListCommand } from './types/Command';
+import { ChangeDirectoryCommand, Direction } from './types/commands/ChangeDirectoryCommand';
+import { Command } from './types/commands/Command';
+import { ListCommand } from './types/commands/ListCommand';
 
 export function readInput(textFile: string) : Command[] {
 
@@ -23,7 +25,7 @@ export function readInput(textFile: string) : Command[] {
                     const moveUpFolderCommand = new ChangeDirectoryCommand(Direction.UP, undefined)
                     commands.push(moveUpFolderCommand);
                 } else {
-                    const toFolder = line.substring(4);
+                    const toFolder = line.substring(5);
                     const changeToSubFolderCommand = new ChangeDirectoryCommand(Direction.DOWN, toFolder)
                     commands.push(changeToSubFolderCommand)
                 }
