@@ -1,5 +1,5 @@
-import {Matrix} from "ts-matrix";
 import {readInput} from "./InputReader";
+import Matrix from "./Matrix";
 
 const matrix: Matrix = readInput('./inputs/realinput.txt')
 
