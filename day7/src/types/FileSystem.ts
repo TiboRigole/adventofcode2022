@@ -14,6 +14,10 @@ export class FileSystem {
         this.currentFolder = this.rootFolder;
     }
 
+    getRootFolder() : Folder{
+        return this.rootFolder;
+    }
+
     moveUp() {
         const parentFolder = this.currentFolder.getParentFolder();
 
