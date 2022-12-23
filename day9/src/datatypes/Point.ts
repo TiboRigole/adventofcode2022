@@ -26,4 +26,13 @@ export default class Point {
     setY(number: number) {
         this.y = number
     }
+
+    setXY(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
+
+    equals(point: Point) {
+        return this.x == point.getX() && this.y == point.getY();
+    }
 }
