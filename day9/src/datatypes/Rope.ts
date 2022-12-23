@@ -19,6 +19,11 @@ export default class Rope {
     }
 
     executeMove(move: Move) {
+
+        if(move.amount == 5 && move.direction == Direction.LEFT) {
+            console.log('break')
+        }
+
         for (let i = 0; i < move.amount; i++) {
             this.moveTo(move.direction)
             this.visitedTailCoordinates.push(Point.fromPoint(this.tailCo));
@@ -208,7 +213,7 @@ export default class Rope {
                 this.headCo.setY(this.headCo.getY() + 1)
                 return;
             case Direction.LEFT:
-                this.headCo.setY(this.headCo.getY() - 1)
+                this.headCo.setX(this.headCo.getX() - 1)
                 return;
             case Direction.RIGHT:
                 this.headCo.setX(this.headCo.getX() + 1)
