@@ -27,12 +27,66 @@ export default class Rope {
 
         console.log('new move: ', move)
 
-        for (let i = 0; i < move.amount; i++) {
-            this.moveTo(move.direction)
+        for (let i = 0; i < move.amount; i++) { 
+            this.moveHead(move.direction);
+            this.adjustTail();
             this.visitedTailCoordinates.push(Point.fromPoint(this.tailCo));
         }
     }
 
+    moveTo(direction: Direction) {
+        this.moveHead(direction);
+        this.adjustTail();
+    }
+
+    moveHead(direction: Direction) {
+        switch(direction) {
+            case Direction.UP: 
+                this.headCo.move(0, 1)
+                break;
+            case Direction.DOWN:
+                this.headCo.move(0, -1)
+                break;
+            case Direction.LEFT:
+                this.headCo.move(-1, 0)
+                break;
+            case Direction.RIGHT:
+                this.headCo.move(1, 0);
+                break;
+        }
+    }
+
+    adjustTail() {
+        const dx = this.headCo.getX() - this.tailCo.getX();
+        const dy = this.headCo.getY() - this.tailCo.getY();
+        const absDx = Math.abs(dx)
+        const absDy = Math.abs(dy)
+        
+        // ok situations
+        // 0 0
+        // 0 1
+        // 1 0
+        // 1 1
+
+        // nok situations
+        if(absDx == 2 && absDy == 0) { // 2 0 
+            const diff = dx > 0 ? 1 : -1
+            this.tailCo.move(diff, 0)
+        } else if(absDy == 2 && absDx == 0) { // 0 2
+            const diff = dy > 0 ? 1 : -1
+            this.tailCo.move(0, diff)
+        } else if (absDx + absDy == 3) { // 1 2
+            const moveX = dx > 0 ? 1 : -1
+            const moveY = dy > 0 ? 1 : -1
+            this.tailCo.move(moveX, moveY)
+        } else if (absDx == 2 && absDy == 2) {
+            const moveX = dx > 0 ? 1 : -1
+            const moveY = dy > 0 ? 1 : -1
+            this.tailCo.move(moveX, moveY)
+        }
+    }
+
+    /* region old implementation 
     private getArrowDirection(): ArrowDirection {
         if (this.headCo.equals(this.tailCo)) {
             return ArrowDirection.HEADS_ON_TAILS
@@ -266,4 +320,5 @@ export default class Rope {
                 return;
         }
     }
+    */
 }

@@ -35,4 +35,9 @@ export default class Point {
     equals(point: Point) {
         return this.x == point.getX() && this.y == point.getY();
     }
+
+    move(dx: number, dy: number) {
+        this.x += dx;
+        this.y += dy;
+    }
 }
