@@ -9,3 +9,11 @@ export enum ArrowDirection {
     LEFT,
     UP_LEFT,
 }
+
+/*
+..##..
+...##.
+.####.
+....#.
+s###..
+ */

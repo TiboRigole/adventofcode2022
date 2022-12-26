@@ -3,7 +3,7 @@ import Move from "./datatypes/Move";
 import Rope from "./datatypes/Rope";
 import Point from "./datatypes/Point";
 
-const moves : Move[] = readInput('./input/testinput.txt')
+const moves : Move[] = readInput('./input/reainput.txt')
 const rope = new Rope();
 
 moves.forEach(move => {

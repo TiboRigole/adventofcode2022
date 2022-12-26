@@ -18,11 +18,14 @@ export default class Rope {
         return this.visitedTailCoordinates
     }
 
+    setCos(hx: number, hy: number, tx: number, ty: number) {
+        this.headCo.setXY(hx, hy)
+        this.tailCo.setXY(tx, ty)
+    }
+
     executeMove(move: Move) {
 
-        if(move.amount == 5 && move.direction == Direction.LEFT) {
-            console.log('break')
-        }
+        console.log('new move: ', move)
 
         for (let i = 0; i < move.amount; i++) {
             this.moveTo(move.direction)
@@ -113,7 +116,7 @@ export default class Rope {
                 return;
             case Direction.UP:
                 this.headCo.setY(this.headCo.getY() + 1)
-                this.tailCo.setY(this.headCo.getY() + 1)
+                this.tailCo.setY(this.tailCo.getY() + 1)
                 return;
             case Direction.LEFT:
                 this.headCo.setX(this.headCo.getX() - 1)
@@ -147,8 +150,10 @@ export default class Rope {
     private moveWhenFacingLeft(direction: Direction) {
         switch (direction) {
             case Direction.DOWN:
+                this.headCo.setY(this.headCo.getY()-1)
                 return;
             case Direction.UP:
+                this.headCo.setY(this.headCo.getY()+1)
                 return;
             case Direction.LEFT:
                 this.headCo.setX(this.headCo.getX() - 1)
@@ -246,11 +251,11 @@ export default class Rope {
     private moveWhenFacingUpLeft(direction: Direction) {
         switch (direction) {
             case Direction.DOWN:
-                this.headCo.setY(this.tailCo.getY() - 1)
+                this.headCo.setY(this.headCo.getY() - 1)
                 return;
             case Direction.UP:
+                this.tailCo.setXY(this.headCo.getX(), this.headCo.getY())
                 this.headCo.setY(this.headCo.getY() + 1)
-                this.tailCo.setXY(this.tailCo.getX() -1, this.tailCo.getY() + 1)
                 return;
             case Direction.LEFT:
                 this.headCo.setX(this.headCo.getX() - 1)
