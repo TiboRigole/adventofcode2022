@@ -14,3 +14,12 @@ export function directionFromString(string: string) : Direction {
     }
     throw new Error(`found no matching direction for ${string}`)
 }
+
+export function directionToString(direction: Direction) : string{
+    switch(direction) {
+        case Direction.UP: return 'U'; break;
+        case Direction.DOWN: return 'D'; break;
+        case Direction.LEFT: return 'L'; break;
+        case Direction.RIGHT: return 'R'; break;
+    }
+}
