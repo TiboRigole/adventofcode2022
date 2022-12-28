@@ -1,5 +1,6 @@
 import { readInput } from "./InputReader";
 import { NoOp } from "./Instruction";
+import drawScreen from "./screen";
 import TubeState from "./TubeState";
 
 
@@ -29,3 +30,13 @@ const sum =
     (tubeStates[220].registerBefore * 220) 
 
 console.log(sum)
+
+const screen = drawScreen(tubeStates)
+
+for(let i = 0; i < 6 ; i++) {
+    let row = ''
+    for(let j = 0; j < 40 ; j++) {
+        row = row + screen[(i * 40) + j]
+    }
+    console.log(row)
+}
